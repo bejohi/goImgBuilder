@@ -1,4 +1,4 @@
-package builder
+package imgBuilder
 
 func (builder ImgBuilder)checkFromOk() bool {
 	fromCounter := 0
@@ -15,6 +15,14 @@ func (builder ImgBuilder)checkFromOk() bool {
 		fromCounter++
 	}
 
+	if builder.loadFromJpgPath != ""{
+		fromCounter++
+	}
+
+	if builder.loadFromPngPath != ""{
+		fromCounter++
+	}
+
 	if fromCounter != 1{
 		return false
 	}
@@ -23,7 +31,7 @@ func (builder ImgBuilder)checkFromOk() bool {
 }
 
 func (builder ImgBuilder)handleFromOperation(){
-	if builder.loadFromPath != ""{
-
+	if builder.loadFromJpgPath != ""{
+		builder.image, builder.imgLoadError = loadJpg(builder.loadFromJpgPath)
 	}
 }

@@ -1,4 +1,4 @@
-package builder
+package imgBuilder
 
 import (
 	"image"
@@ -8,15 +8,23 @@ import (
 
 type ImgBuilder struct {
 	loadFromPath string
+	loadFromJpgPath string
+	loadFromPngPath string
 	fromRectangle *image.Rectangle
 	fromSizeWitdh int
 	fromSizeHeight int
 	withColor *color.Color
 	saveAt string
 	image image.Image
+	imgLoadError error
 }
 
 func (builder ImgBuilder)FromFile(path string) ImgBuilder{
+	builder.loadFromPath = path
+	return builder
+}
+
+func (builder ImgBuilder)FromJpeg(path string) ImgBuilder{
 	builder.loadFromPath = path
 	return builder
 }
